@@ -16,6 +16,10 @@ package com.day29;
  * TC1.5 :- Given the State Census CSV File when correct but csv header incorrect Returns a custom Exception
  *          - This is a Sad Test Case to verify if the header is incorrect then exception is raised.
  *
+ *  UC2  :- Ability for the analyser to load the Indian States Code Information from a csv  file
+ *          - Create CSVStates Class to load the CSV Data
+ *          - Use Iterator to load the data
+ *          - Check with StateCensusAnalyser to ensure number of record matches
  */
 
 /**
@@ -68,4 +72,39 @@ public class CensusAnalyser {
                     CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM);
         }
     }
+
+    /**
+     *  create a method name as loadIndianStatesCodeData, this is parameterized method
+     * @param stateCodecsvFilePath
+     * @return
+     * @throws CensusAnalyserException
+     */
+    public static int loadIndianStatesCodeData(String stateCodecsvFilePath) throws CensusAnalyserException {
+        /**
+         * using try catch block for exception handling
+         */
+        try {
+            Reader reader = Files.newBufferedReader(Paths.get(stateCodecsvFilePath));
+
+            /**
+             * create object for CsvToBeanBuilder, object name as csvToBeanBuilder
+             */
+            CsvToBeanBuilder<CSVStatesCode> csvToBeanBuilder = new CsvToBeanBuilder<>(reader);
+            csvToBeanBuilder.withType(CSVStatesCode.class);
+            csvToBeanBuilder.withIgnoreLeadingWhiteSpace(true);
+
+            CsvToBean<CSVStatesCode> csvToBean = csvToBeanBuilder.build();
+            Iterator<CSVStatesCode> censusCSVIterator = csvToBean.iterator();
+
+            int numOfEntries = 0;
+            while (censusCSVIterator.hasNext()) {
+                numOfEntries++;
+                censusCSVIterator.next();
+            }
+            return numOfEntries;
+        } catch (Exception e) {
+            throw new CensusAnalyserException(e.getMessage(), CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM);
+        }
+    }
+
 }

@@ -10,10 +10,10 @@ public class CensusAnalyserException extends Exception {
      *  An enum type (or enumerated type) is a type whose fields consist of a fixed set of constants
      */
     public enum ExceptionType {
-        CENSUS_FILE_PROBLEM, e
+        CENSUS_FILE_PROBLEM,
     }
 
-    ExceptionType type;
+    public ExceptionType type;
 
     /**
      *  create a constructor name as CensusAnalyserException, this is parameterized constructor
