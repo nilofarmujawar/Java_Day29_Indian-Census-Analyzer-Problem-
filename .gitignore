@@ -14,9 +14,10 @@ buildNumber.properties
 *.class
 *.project
 *.out
-*.lib
 *.idea
 *.gradle
 *.setting
 *.gradlew.bat
+*.lib
 *.build
+
