@@ -22,6 +22,8 @@ package com.day29;
  *          - Check with StateCensusAnalyser to ensure number of record matches
  * TC2.1 :- Given the States Census CSV file, Check to ensure the Number of Record matches
  *          - This is a Happy Test Case where the records are checked
+ * TC2.2 :- Given the State Census CSV File if incorrect Returns a custom Exception
+ *          - This is a Sad Test Case to verify if the exception is raised.
  */
 
 /**

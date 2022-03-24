@@ -27,7 +27,7 @@ public class CensusAnalyserTest {
     private static String INCORRECT_DELIMETER_CSV = "C:\\Users\\admin\\Desktop\\java\\Day29Indian-Census-Analyzer-Problem\\Java_Day29_Indian-Census-Analyzer-Problem-\\src\\test\\resources\\IndianCSVWithWrongDelimeter.csv";
     private static String WRONG_HEADER = "C:\\Users\\admin\\Desktop\\java\\Day29Indian-Census-Analyzer-Problem\\Java_Day29_Indian-Census-Analyzer-Problem-\\src\\test\\resources\\WrongHeaderCensus.csv";
     private static String CORRECT_STATE_CODE_CSV_FILE_PATH = "C:\\Users\\admin\\Desktop\\java\\Day29Indian-Census-Analyzer-Problem\\Java_Day29_Indian-Census-Analyzer-Problem-\\src\\test\\resources\\IndianStateCodesCSV.csv";
-
+    private static String WRONG_STATE_CODE_CSV_FILE_PATH = "C:\\Users\\admin\\Desktop\\java\\Day29Indian-Census-Analyzer-Problem\\Java_Day29_Indian-Census-Analyzer-Problem-\\src\\IndianStateCodesCSV.csv";
 
     // TC 1.1
     @Test
@@ -106,6 +106,19 @@ public class CensusAnalyserTest {
             Assertions.assertEquals(37, numOfEntries);
         } catch (CensusAnalyserException e) {
             e.printStackTrace();
+        }
+    }
+
+    //TC 2.2
+    @Test
+    public void givenWrongStateCodeCSVFile_ShouldReturnCustomExceptionTest() {
+        try {
+            CensusAnalyser censusAnalyzerObj = new CensusAnalyser();
+            ExpectedException exceptionRule = ExpectedException.none(); // Allow us to verify the Exception thrown
+            exceptionRule.expect(CensusAnalyserException.class);
+            censusAnalyzerObj.loadIndianStatesCodeData(WRONG_STATE_CODE_CSV_FILE_PATH);
+        } catch (CensusAnalyserException e) {
+            Assertions.assertEquals(CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM, e.type);
         }
     }
 }
