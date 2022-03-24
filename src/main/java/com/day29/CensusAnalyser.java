@@ -17,6 +17,7 @@ package com.day29;
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
 
+import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -26,17 +27,13 @@ import java.util.Iterator;
  * create class name as CensusAnalyser
  */
 public class CensusAnalyser {
-    /**
-     * file path
-     */
-    private static String CSV_FILE_PATH="C:\\Users\\admin\\Desktop\\java\\Day29Indian-Census-Analyzer-Problem\\Java_Day29_Indian-Census-Analyzer-Problem-\\src\\test\\resources\\IndianStateCensusData.csv";
 
     /**
      * crete a method name as loadIndiaCensusData,this is parameterized method
      * @param csvFilePath where ur file saved
      * @return no of entries
      */
-    public int loadIndiaCensusData(String csvFilePath) {
+    public int loadIndiaCensusData(String csvFilePath) throws CensusAnalyserException {
         /**
          * using try catch block for exception handling
          */
@@ -58,28 +55,9 @@ public class CensusAnalyser {
                 censusCSVIterator.next();
             }
             return numOfEntries;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return 0;
+        } catch (IOException e) {
+            throw new CensusAnalyserException(e.getMessage(),
+                    CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM);
         }
-    }
-
-    /**
-     * create main method ,all program execute in main method
-     * @param args no arguments
-     */
-    public static void main(String[] args) {
-        /**
-         * create object name as censusAnalyzerObj for CensusAnalyser class
-         */
-        CensusAnalyser censusAnalyzerObj=new CensusAnalyser();
-        /**
-         * calling loadIndiaCensusData method from censusAnalyxerObj object and store result in num of Enteries
-         */
-        int numOfEntries=censusAnalyzerObj.loadIndiaCensusData(CSV_FILE_PATH);
-        /**
-         * print no of entries
-         */
-        System.out.println(numOfEntries);
     }
 }
