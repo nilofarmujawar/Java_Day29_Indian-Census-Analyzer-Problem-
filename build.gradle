@@ -1,0 +1,29 @@
+plugins {
+    id 'java'
+   // apply plugin : 'java'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
+   implementation group: 'org.apache.commons', name: 'commons-csv', version: '1.9.0'
+   // compile group: 'com.opencsv', name: 'opencsv', version: '5.2'
+    implementation group: 'com.opencsv', name: 'opencsv', version: '5.2'
+    // https://mvnrepository.com/artifact/com.opencsv/opencsv
+    implementation group: 'com.opencsv', name: 'opencsv', version: '5.5.2'
+
+
+
+
+}
+
+test {
+    useJUnitPlatform()
+}
