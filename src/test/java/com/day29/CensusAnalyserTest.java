@@ -3,6 +3,8 @@ package com.day29;
 /**
  * import class
  */
+
+import io.github.glytching.junit.extension.exception.ExpectedException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -21,6 +23,8 @@ public class CensusAnalyserTest {
      */
     private static String CORRECT_CSV_FILE_PATH = "C:\\Users\\admin\\Desktop\\java\\Day29Indian-Census-Analyzer-Problem\\Java_Day29_Indian-Census-Analyzer-Problem-\\src\\test\\resources\\IndianStateCensusData.csv";
     private static String WRONG_CSV_FILE_PATH = "C:\\Users\\admin\\Desktop\\java\\Day29Indian-Census-Analyzer-Problem\\Java_Day29_Indian-Census-Analyzer-Problem-\\src\\IndianStateCensusData.csv";
+    private static String INCORRECT_FILE_TYPE_CSV_PATH = "C:\\Users\\admin\\Desktop\\java\\Day29Indian-Census-Analyzer-Problem\\Java_Day29_Indian-Census-Analyzer-Problem-\\src\\test\\resources\\IndianStateCensusData.java";
+
 
 
     // TC 1.1
@@ -50,4 +54,16 @@ public class CensusAnalyserTest {
             Assertions.assertEquals(CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM, e.type);
         }
     }
+    @Test
+    public void givenWrongType_IndianCensusCSVFile_ShouldReturnCustomExceptionTest() {
+        try {
+            CensusAnalyser censusAnalyzerObj = new CensusAnalyser();
+            ExpectedException exceptionRule = ExpectedException.none(); // Allow us to verify the Exception thrown
+            exceptionRule.expect(CensusAnalyserException.class);
+            censusAnalyzerObj.loadIndiaCensusData(INCORRECT_FILE_TYPE_CSV_PATH);
+        } catch (CensusAnalyserException e) {
+            Assertions.assertEquals(CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM, e.type);
+        }
+    }
+
 }

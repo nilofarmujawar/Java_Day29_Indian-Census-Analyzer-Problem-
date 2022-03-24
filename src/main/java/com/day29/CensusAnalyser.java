@@ -1,12 +1,16 @@
 package com.day29;
 /**
- * UC1 :- Ability for the analyser to load the Indian States Census Information from a csv file
- *        - Create a StateCensusAnalyser Class to load  the State Census CSV Data
- *        - Create CSVStateCensus Class to load the CSV Data
- *        - Use Iterator to load the data
- *        - Check with StateCensusAnalyser to ensure no of record matches.
+ * UC1 :-   Ability for the analyser to load the Indian States Census Information from a csv file
+ *          - Create a StateCensusAnalyser Class to load  the State Census CSV Data
+ *          - Create CSVStateCensus Class to load the CSV Data
+ *          - Use Iterator to load the data
+ *          - Check with StateCensusAnalyser to ensure no of record matches.
  * TC1.1 :- Given the States Census CSV file, Check to ensure the Number of Record matches
  *          - This is a Happy Test Case where the records are checked
+ * TC1.2 :- Given the State Census CSV File if incorrect Returns a custom Exception
+ *          - This is a Sad Test Case to verify if the exception is raised.
+ * TC1.3 :- Given the State Census  CSV File when correct but type incorrect Returns a custom Exception
+ *          - This is a Sad Test Case to verify if the type is incorrect then exception is raised.
  *
  */
 
