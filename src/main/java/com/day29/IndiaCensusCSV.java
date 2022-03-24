@@ -1,28 +1,41 @@
 package com.day29;
 
+/**
+ * import class
+ */
+
 import com.opencsv.bean.CsvBindByName;
 
+/**
+ * create a class name as IndiaCensusCSV
+ */
 public class IndiaCensusCSV {
 
-    @CsvBindByName(column = "FREQUENCY", required = true)
-    public String FREQUENCY;
+    /**
+     * @CsvBindByName =
+     * Specifies a binding between a column name of the CSV input and a field in a bean.
+     */
 
-    @CsvBindByName(column = "DATE", required = true)
-    public int DATE;
+    @CsvBindByName(column = "State", required = true)
+    public String state;
 
-    @CsvBindByName(column = "LOCATION_NAME", required = true)
-    public String LOCATION_NAME;
+    @CsvBindByName(column = "Population", required = true)
+    public int population;
 
-    @CsvBindByName(column = "VARIABLE_NAME", required = true)
-    public String VARIABLE_NAME;
+    @CsvBindByName(column = "AreaInSqKm", required = true)
+    public int areaInSqKm;
 
-    @CsvBindByName(column = "VALUE", required = true)
-    public int VALUE;
+    @CsvBindByName(column = "DensityPerSqKm", required = true)
+    public int densityPerSqKm;
 
 
+    /**
+     * overide method
+     * @return state, population, areaInsqKm,DestityPerSqkm
+     */
     @Override
     public String toString() {
-        return "IndiaCensusCSV{" + "FREQUENCY='" + FREQUENCY + '\'' + ", DATE='" + DATE + '\'' + ", LOCATION_NAME='"
-                + LOCATION_NAME + '\'' + ", VARIABLE_NAME='" + VARIABLE_NAME + '\'' + ",VALUE='" + VALUE + '\'' + '}';
+        return "IndiaCensusCSV{" + "State='" + state + '\'' + ", Population='" + population + '\'' + ", AreaInSqKm='"
+                + areaInSqKm + '\'' + ", DensityPerSqKm='" + densityPerSqKm + '\'' + '}';
     }
 }
