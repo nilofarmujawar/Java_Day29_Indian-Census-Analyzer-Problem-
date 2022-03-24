@@ -20,6 +20,8 @@ package com.day29;
  *          - Create CSVStates Class to load the CSV Data
  *          - Use Iterator to load the data
  *          - Check with StateCensusAnalyser to ensure number of record matches
+ * TC2.1 :- Given the States Census CSV file, Check to ensure the Number of Record matches
+ *          - This is a Happy Test Case where the records are checked
  */
 
 /**

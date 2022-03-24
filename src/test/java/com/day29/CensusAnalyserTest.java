@@ -26,6 +26,7 @@ public class CensusAnalyserTest {
     private static String INCORRECT_FILE_TYPE_CSV_PATH = "C:\\Users\\admin\\Desktop\\java\\Day29Indian-Census-Analyzer-Problem\\Java_Day29_Indian-Census-Analyzer-Problem-\\src\\test\\resources\\IndianStateCensusData.java";
     private static String INCORRECT_DELIMETER_CSV = "C:\\Users\\admin\\Desktop\\java\\Day29Indian-Census-Analyzer-Problem\\Java_Day29_Indian-Census-Analyzer-Problem-\\src\\test\\resources\\IndianCSVWithWrongDelimeter.csv";
     private static String WRONG_HEADER = "C:\\Users\\admin\\Desktop\\java\\Day29Indian-Census-Analyzer-Problem\\Java_Day29_Indian-Census-Analyzer-Problem-\\src\\test\\resources\\WrongHeaderCensus.csv";
+    private static String CORRECT_STATE_CODE_CSV_FILE_PATH = "C:\\Users\\admin\\Desktop\\java\\Day29Indian-Census-Analyzer-Problem\\Java_Day29_Indian-Census-Analyzer-Problem-\\src\\test\\resources\\IndianStateCodesCSV.csv";
 
 
     // TC 1.1
@@ -93,6 +94,18 @@ public class CensusAnalyserTest {
             censusAnalyserObj.loadIndiaCensusData(WRONG_HEADER);
         } catch (CensusAnalyserException e) {
             Assertions.assertEquals(CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM, e.type);
+        }
+    }
+    // TC 2.1
+    @Test
+    public void givenStateCodeCSVFile_ShouldReturnCorrectNumberOfRecordTest() {
+        CensusAnalyser censusAnalyzerObj = new CensusAnalyser();
+        int numOfEntries;
+        try {
+            numOfEntries = censusAnalyzerObj.loadIndianStatesCodeData(CORRECT_STATE_CODE_CSV_FILE_PATH);
+            Assertions.assertEquals(37, numOfEntries);
+        } catch (CensusAnalyserException e) {
+            e.printStackTrace();
         }
     }
 }
