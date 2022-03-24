@@ -13,6 +13,9 @@ package com.day29;
  *          - This is a Sad Test Case to verify if the type is incorrect then exception is raised.
  * TC1.4 :- Given the State Census CSV File when correct but delimiter incorrect Returns a custom Exception
  *          - This is a Sad Test Case to verify if the file delimiter is incorrect then exception is raised.
+ * TC1.5 :- Given the State Census CSV File when correct but csv header incorrect Returns a custom Exception
+ *          - This is a Sad Test Case to verify if the header is incorrect then exception is raised.
+ *
  */
 
 /**
@@ -22,7 +25,6 @@ package com.day29;
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
 
-import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -48,19 +50,20 @@ public class CensusAnalyser {
             /**
              * crete a object name as csvToBeanBuilder
              */
-            CsvToBeanBuilder<IndiaCensusCSV> csvToBeanBuilder = new CsvToBeanBuilder<IndiaCensusCSV>(reader);
+            CsvToBeanBuilder<IndiaCensusCSV> csvToBeanBuilder = new CsvToBeanBuilder<>(reader);
             csvToBeanBuilder.withType(IndiaCensusCSV.class);
             csvToBeanBuilder.withIgnoreLeadingWhiteSpace(true);
 
             CsvToBean<IndiaCensusCSV> csvToBean = csvToBeanBuilder.build();
             Iterator<IndiaCensusCSV> censusCSVIterator = csvToBean.iterator();
+
             int numOfEntries = 0;
             while (censusCSVIterator.hasNext()) {
                 numOfEntries++;
                 censusCSVIterator.next();
             }
             return numOfEntries;
-        } catch (IOException e) {
+        } catch (Exception e) {
             throw new CensusAnalyserException(e.getMessage(),
                     CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM);
         }
