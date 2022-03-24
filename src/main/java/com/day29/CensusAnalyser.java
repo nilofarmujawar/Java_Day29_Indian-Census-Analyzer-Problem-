@@ -26,6 +26,11 @@ package com.day29;
  *          - This is a Sad Test Case to verify if the exception is raised.
  * TC2.3 :- Given the State Census  CSV File when correct but type incorrect Returns a custom Exception
  *          - This is a Sad Test Case to verify if the type is incorrect then exception is raised.
+ * TC2.4 :- Given the State Census CSV File when correct but delimiter incorrect Returns a custom Exception
+ *          - This is a Sad Test Case to verify if the file delimiter is incorrect then exception is raised.
+ * TC2.5 :- Given the State Census CSV File when correct but csv header incorrect Returns a custom Exception
+ *          - This is a Sad Test Case to verify if the header is incorrect then exception is raised.
+ *         
  */
 
 /**

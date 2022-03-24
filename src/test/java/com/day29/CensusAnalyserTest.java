@@ -30,7 +30,7 @@ public class CensusAnalyserTest {
     private static String WRONG_STATE_CODE_CSV_FILE_PATH = "C:\\Users\\admin\\Desktop\\java\\Day29Indian-Census-Analyzer-Problem\\Java_Day29_Indian-Census-Analyzer-Problem-\\src\\IndianStateCodesCSV.csv";
     private static String INCORRECT_FILE_TYPE_STATE_CODE_CSV_PATH = "C:\\Users\\admin\\Desktop\\java\\Day29Indian-Census-Analyzer-Problem\\Java_Day29_Indian-Census-Analyzer-Problem-\\src\\test\\resources\\IndianStateCodesCSV.java";
     private static String INCORRECT_DELIMETER_STATE_CODE_CSV = "C:\\Users\\admin\\Desktop\\java\\Day29Indian-Census-Analyzer-Problem\\Java_Day29_Indian-Census-Analyzer-Problem-\\src\\test\\resources\\StateCodeIncorrectDelimeterCSV.csv";
-
+    private static String WRONG_HEADER_STATE_CODE_CSV = "C:\\Users\\admin\\Desktop\\java\\Day29Indian-Census-Analyzer-Problem\\Java_Day29_Indian-Census-Analyzer-Problem-\\src\\test\\resources\\WrongHeaderStateCodeCSV.csv";
 
     // TC 1.1
     @Test
@@ -145,6 +145,18 @@ public class CensusAnalyserTest {
             ExpectedException exceptionRule = ExpectedException.none(); // Allow us to verify the Exception thrown
             exceptionRule.expect(CensusAnalyserException.class);
             censusAnalyzerObj.loadIndianStatesCodeData(INCORRECT_DELIMETER_STATE_CODE_CSV);
+        } catch (CensusAnalyserException e) {
+            Assertions.assertEquals(CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM, e.type);
+        }
+    }
+    //Tc 2.5
+    @Test
+    public void givenIncorrectHeader_IntoStateCodeCSVFile_ShouldReturnCustomExceptionTest() {
+        try {
+            CensusAnalyser censusAnalyserObj = new CensusAnalyser();
+            ExpectedException exceptionRule = ExpectedException.none();
+            exceptionRule.expect(CensusAnalyserException.class);
+            censusAnalyserObj.loadIndianStatesCodeData(WRONG_HEADER_STATE_CODE_CSV);
         } catch (CensusAnalyserException e) {
             Assertions.assertEquals(CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM, e.type);
         }
